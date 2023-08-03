@@ -1,0 +1,42 @@
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8">
+    <title>ROTI Encode & Decode</title>
+    <script src="https://cdn.jsdelivr.net/npm/ruby-3_2-wasm-wasi@2.1.0/dist/browser.script.iife.js"></script>
+    <script type="text/ruby" src="roti.rb"></script>
+    <script type="text/ruby">
+      require 'js'
+
+      document = JS.global[:document]
+
+      encode_input = document.getElementById('encode_input')
+      encode_output = document.getElementById('encode_output')
+
+      encode_input.addEventListener('keyup') do
+        encode_output[:innerText] = Roti.encode(encode_input[:value].to_s)
+      end
+
+      decode_input = document.getElementById('decode_input')
+      decode_output = document.getElementById('decode_output')
+
+      decode_input.addEventListener('keyup') do
+        decode_output[:innerText] = Roti.decode(decode_input[:value].to_s)
+      end
+    </script>
+  </head>
+  <body>
+    <div>
+      <h1>ROTI Encode & Decode</h1>
+      <div>
+        <h2>Encode</h2>
+        <p>Input: <input id="encode_input" /></p>
+        <p>Output: <span id="encode_output"></span></p>
+      </div>
+      <div>
+        <h2>Decode</h2>
+        <p>Input: <input id="decode_input" /></p>
+        <p>Output: <span id="decode_output"></span></p>
+      </div>
+    </div>
+  </body>
+</html>
